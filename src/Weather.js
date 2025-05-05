@@ -11,31 +11,32 @@ export default function Weather() {
     let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
     axios.get(url).then(showData);
   }
-  function formatDate(date) {
-    const options = {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-    };
-    return date.toLocaleString(undefined, options);
-}
-function formatDay(timestamp) {
-    const date = new Date(timestamp * 1000);
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    return days[date.getDay()];
-}
 
-const DateDisplay = ({ timestamp }) => {
-    const date = new Date(timestamp * 1000);
-    return (
-        <div>
-            <p>Formatted Date: {formatDate(date)}</p>
-            <p>Day of the Week: {formatDay(timestamp)}</p>
-        </div>
-    );
-};
+
+  function formatDate(date) {
+      const options = {
+          hour: "numeric",
+          minute: "numeric",
+      };
+      return date.toLocaleString(undefined, options);
+  }
+  
+  function formatDay(timestamp) {
+      let date = new Date(timestamp * 1000);
+      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      return days[date.getDay()];
+  }
+  
+  const DateDisplay = ({ timestamp }) => {
+      const date = new Date(timestamp * 1000);
+      return (
+          <div>
+              <p>Day of the Week: {formatDay(timestamp)}</p>
+              <p>Time: {formatDate(date)}</p>
+          </div>
+      );
+  };
+
 
   function showData(response) {
    
