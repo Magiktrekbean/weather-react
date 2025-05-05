@@ -1,6 +1,7 @@
 .App {
-  margin: 0 30px;
+  margin: 0 20px;
   font-family: sans-serif;
-  text-align: left;
+  text-align: center ;
   line-height: 1.5;
+  color: burlywood;
 }

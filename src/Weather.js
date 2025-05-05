@@ -21,16 +21,41 @@ export default function Weather() {
   }
 
   return (
-    <div className="Weather">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="search"
-          onChange={updateCity}
-          placeholder="Please enter a city..."
-        ></input>
-        <input type="submit" value="search"></input>
-      </form>{" "}
+<div className="Weather">
+  <div className="grid d-flex align-items-center">
+    <form onSubmit={handleSubmit} className="d-flex w-100">
+      <input
+        className="col-8 p-2"
+        type="search"
+        onChange={updateCity}
+        placeholder="Please enter a city..."
+      />
+      <input className="col-4 p-2 ms-2" type="submit" value="Search" />
+    </form>
+  </div>
+  <div className="weather details grid d-flex">
+    <div className="row w-100">
+    <h1 className="col-6">{city}</h1>
+    <h2 className="col-6"> <img src={data.condition.icon_url} alt="" />
+    {Math.round(data.temperature.current)}°C</h2>
+    </div>
+</div>
+
+<div className="grid">
+<div className="row w-100">
+    <p className="col-6">,{data.condition.description}</p>
+</div>
+<div className="row w-100">
+    <p className="col-6"> 
+        Humidity: {data.temperature.humidity}%
+        Wind: {data.wind.speed}km/h</p>
+        </div>
+  </div>
+
+
+
       <div>
+        
         {data ? (
           <ul>
             <li>Temperature: {Math.round(data.temperature.current)}°C</li>
