@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export default function Weather() {
-  let [data, setData] = useState(null);
+  let [data, setData] = useState({});
   let [city, setCity] = useState("");
   let apiKey = "594b61tf99f8e42c306162ocb32f8ac6";
 
@@ -38,7 +38,7 @@ const DateDisplay = ({ timestamp }) => {
 };
 
   function showData(response) {
-    console.log(response);
+   
     setData(response.data);
   }
   function updateCity(event) {
@@ -57,26 +57,33 @@ const DateDisplay = ({ timestamp }) => {
       />
       <input className="col-4 p-2 ms-2" type="submit" value="Search" />
     </form>
-  </div>
-  <div className="weather details grid d-flex">
+</div>
+  <div className="weather details grid">
     <div className="row w-100">
     <h1 className="col-6">{city}</h1>
-    <h2 className="col-6"> <img src={data.condition.icon_url} alt="" />
-    {Math.round(data.temperature.current)}°C</h2>
+    <h2 className="col-6"> 
+    {data.temperature ? Math.round(data.temperature.current) + "°C" : "N/A"}</h2>
     </div>
 </div>
+
 
 <div className="grid">
 <div className="row w-100">
-    <p className="col-6">{DateDisplay},{data.condition.description}</p>
+<p className="col-6">
+                    <DateDisplay timestamp={data.timestamp} /> 
+                    {data.condition ? data.condition.description : "No data"}
+                </p>
 </div>
 <div className="row w-100">
     <p className="col-6"> 
-        Humidity: {data.temperature.humidity}%
-        Wind: {data.wind.speed}km/h</p>
+    {data.temperature ? "Humidity: " + data.temperature.humidity + "%" : "N/A"} {""}
+    {data.wind ? "Wind: " + data.wind.speed + "km/h " : "N/A"}</p>
         </div>
   </div>
 
+ 
+
     </div>
+    
   );
 }
