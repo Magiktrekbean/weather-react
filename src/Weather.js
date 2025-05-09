@@ -23,7 +23,7 @@ export default function Weather() {
   
   function formatDay(timestamp) {
       let date = new Date(timestamp * 1000);
-      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       return days[date.getDay()];
   }
   
@@ -71,7 +71,7 @@ export default function Weather() {
 <div className="grid">
 <div className="row w-100">
 <p className="col-6">
-                    <DateDisplay timestamp={data.timestamp} /> 
+                    <DateDisplay timestamp={data.time} /> 
                     {data.condition ? data.condition.description : "No data"}
                 </p>
 </div>
