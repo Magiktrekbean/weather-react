@@ -1,7 +1,30 @@
 .App {
   margin: 0 20px;
-  font-family: sans-serif;
+  font-family: Cerebri-Sans,Helvetica,Arial,sans-serif;
   text-align: center ;
   line-height: 1.5;
-  color: burlywood;
+  color: black;
+}
+.Weather h1{
+  font-size: 38px;
+  position: relative;
+  top: 34px;
+  font-weight: bold;
+}
+.Weather h2{
+  font-size: 80px;
+}
+.degree {
+  font-size: 28px;
+  font-size: 28px;
+  line-height: 36px;
+  line-height: 1;
+  position: relative;
+  top: -34px;
+}
+.weather-details {
+color: red;
+}
+.description {
+  color:gray
 }

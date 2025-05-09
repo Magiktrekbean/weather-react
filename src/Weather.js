@@ -30,10 +30,10 @@ export default function Weather() {
   const DateDisplay = ({ timestamp }) => {
       const date = new Date(timestamp * 1000);
       return (
-          <div>
-              <p>Day of the Week: {formatDay(timestamp)}</p>
-              <p>Time: {formatDate(date)}</p>
-          </div>
+          <span>
+              {formatDay(timestamp)} {formatDate(date)},
+              
+          </span>
       );
   };
 
@@ -49,36 +49,42 @@ export default function Weather() {
   return (
 <div className="Weather">
   <div className="grid d-flex align-items-center">
-    <form onSubmit={handleSubmit} className="d-flex w-100">
+    <form onSubmit={handleSubmit} className="d-flex w-100 ">
       <input
-        className="col-8 p-2"
+        className="col-8 p-2 rounded-2"
         type="search"
         onChange={updateCity}
         placeholder="Please enter a city..."
       />
-      <input className="col-4 p-2 ms-2" type="submit" value="Search" />
+      <input className="col-4 p-2 ms-2 rounded-2" type="submit" value="Search" />
     </form>
 </div>
   <div className="weather details grid">
     <div className="row w-100">
     <h1 className="col-6">{city}</h1>
     <h2 className="col-6"> 
-    {data.temperature ? Math.round(data.temperature.current) + "°C" : "N/A"}</h2>
-    </div>
+    {data.condition ? <img src={data.condition.icon_url} alt="" srcset="" /> : "N/A"}  
+    {data.temperature ? Math.round(data.temperature.current) : "N/A"}<span className="degree">°C</span> </h2> </div>
 </div>
 
 
-<div className="grid">
+<div className="grid description">
 <div className="row w-100">
-<p className="col-6">
-                    <DateDisplay timestamp={data.time} /> 
-                    {data.condition ? data.condition.description : "No data"}
+<p className="col-6"> 
+
+                <DateDisplay timestamp={data.time}/> {data.condition ? data.condition.description : "No data"}
                 </p>
 </div>
 <div className="row w-100">
-    <p className="col-6"> 
-    {data.temperature ? "Humidity: " + data.temperature.humidity + "%" : "N/A"} {""}
-    {data.wind ? "Wind: " + data.wind.speed + "km/h " : "N/A"}</p>
+<p className="col-6 ">
+ 
+    {data.temperature ? (
+        <>Humidity: <span className="weather-details">{data.temperature.humidity} %</span>, </>
+    ) : ("N/A")}{" "}
+    {data.wind ? (
+        <>Wind: <span className="weather-details">{data.wind.speed} km/h</span> </> 
+    ) : ("N/A")}
+</p>
         </div>
   </div>
 
